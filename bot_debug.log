@@ -1,0 +1,42 @@
+INFO:     Started server process [19673]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2026-04-17 23:20:37,468 [DEBUG] [PASSO 1] Acessando home do portal para estabelecer sessão...
+2026-04-17 23:20:38,771 [DEBUG] [PASSO 1] Home carregada. URL atual: https://portaldatransparencia.gov.br/
+2026-04-17 23:20:41,775 [DEBUG] [PASSO 2] Navegando direto para resultados: https://portaldatransparencia.gov.br/pessoa-fisica/busca/lista?termo=Gustavo+Oliveira+Saud&pagina=1&tamanhoPagina=10
+2026-04-17 23:20:42,634 [DEBUG] [PASSO 2] Página de resultados carregada. URL atual: https://portaldatransparencia.gov.br/pessoa-fisica/busca/lista?termo=Gustavo+Oliveira+Saud&pagina=1&tamanhoPagina=10
+2026-04-17 23:20:42,634 [DEBUG] [PASSO 3] Aguardando selector 'a.link-busca-nome'...
+2026-04-17 23:20:44,004 [DEBUG] [PASSO 3] Resultados encontrados. URL atual: https://portaldatransparencia.gov.br/pessoa-fisica/busca/lista?termo=Gustavo+Oliveira+Saud&pagina=1&tamanhoPagina=10
+2026-04-17 23:20:44,011 [DEBUG] [PASSO 4] href do primeiro resultado: /busca/pessoa-fisica/344225698-gustavo-oliveira-saud
+2026-04-17 23:20:44,011 [DEBUG] [PASSO 4] Navegando para perfil: https://portaldatransparencia.gov.br/busca/pessoa-fisica/344225698-gustavo-oliveira-saud
+2026-04-17 23:20:45,520 [DEBUG] [PASSO 4] Perfil carregado. URL atual: https://portaldatransparencia.gov.br/busca/pessoa-fisica/344225698-gustavo-oliveira-saud
+2026-04-17 23:20:45,520 [DEBUG] [PASSO 5] Aguardando 'section.dados-tabelados'...
+2026-04-17 23:20:45,545 [DEBUG] [PASSO 5] Panorama carregado.
+2026-04-17 23:20:45,545 [DEBUG] [PASSO 6] Capturando screenshot (base64)...
+2026-04-17 23:20:45,626 [DEBUG] [PASSO 6] Screenshot capturado. Tamanho base64: 109392 chars
+2026-04-17 23:20:45,626 [DEBUG] [PASSO 7] Extraindo dados do panorama...
+2026-04-17 23:20:45,653 [DEBUG] [PASSO 7] Panorama extraído: {'nome': 'GUSTAVO OLIVEIRA SAUD', 'cpf': '***.332.466-**', 'localidade': 'BELO HORIZONTE - MG'}
+2026-04-17 23:20:45,653 [DEBUG] [PASSO 8] Coletando seções de benefícios...
+2026-04-17 23:20:45,658 [DEBUG] [PASSO 8] Total de seções encontradas: 0
+INFO:     127.0.0.1:57502 - "POST /api/v1/consultar HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45470 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45470 - "GET /openapi.json HTTP/1.1" 200 OK
+2026-04-17 23:32:57,598 [DEBUG] [PASSO 1] Acessando home do portal para estabelecer sessão...
+2026-04-17 23:32:59,004 [DEBUG] [PASSO 1] Home carregada. URL atual: https://portaldatransparencia.gov.br/
+2026-04-17 23:33:02,007 [DEBUG] [PASSO 2] Navegando direto para resultados: https://portaldatransparencia.gov.br/pessoa-fisica/busca/lista?termo=Gustavo+Oliveira+Saud&pagina=1&tamanhoPagina=10
+2026-04-17 23:33:02,962 [DEBUG] [PASSO 2] Página de resultados carregada. URL atual: https://portaldatransparencia.gov.br/pessoa-fisica/busca/lista?termo=Gustavo+Oliveira+Saud&pagina=1&tamanhoPagina=10
+2026-04-17 23:33:02,963 [DEBUG] [PASSO 3] Aguardando selector 'a.link-busca-nome'...
+2026-04-17 23:33:04,338 [DEBUG] [PASSO 3] Resultados encontrados. URL atual: https://portaldatransparencia.gov.br/pessoa-fisica/busca/lista?termo=Gustavo+Oliveira+Saud&pagina=1&tamanhoPagina=10
+2026-04-17 23:33:04,346 [DEBUG] [PASSO 4] href do primeiro resultado: /busca/pessoa-fisica/344225698-gustavo-oliveira-saud
+2026-04-17 23:33:04,346 [DEBUG] [PASSO 4] Navegando para perfil: https://portaldatransparencia.gov.br/busca/pessoa-fisica/344225698-gustavo-oliveira-saud
+2026-04-17 23:33:05,827 [DEBUG] [PASSO 4] Perfil carregado. URL atual: https://portaldatransparencia.gov.br/busca/pessoa-fisica/344225698-gustavo-oliveira-saud
+2026-04-17 23:33:05,827 [DEBUG] [PASSO 5] Aguardando 'section.dados-tabelados'...
+2026-04-17 23:33:05,849 [DEBUG] [PASSO 5] Panorama carregado.
+2026-04-17 23:33:05,849 [DEBUG] [PASSO 6] Capturando screenshot (base64)...
+2026-04-17 23:33:05,944 [DEBUG] [PASSO 6] Screenshot capturado. Tamanho base64: 109392 chars
+2026-04-17 23:33:05,944 [DEBUG] [PASSO 7] Extraindo dados do panorama...
+2026-04-17 23:33:05,970 [DEBUG] [PASSO 7] Panorama extraído: {'nome': 'GUSTAVO OLIVEIRA SAUD', 'cpf': '***.332.466-**', 'localidade': 'BELO HORIZONTE - MG'}
+2026-04-17 23:33:05,970 [DEBUG] [PASSO 8] Coletando seções de benefícios...
+2026-04-17 23:33:05,975 [DEBUG] [PASSO 8] Total de seções encontradas: 0
+INFO:     127.0.0.1:45476 - "POST /api/v1/consultar HTTP/1.1" 200 OK

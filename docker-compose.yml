@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  bot-api:
+    build: .
+    container_name: transparencia-bot
+    ports:
+      - "8001:8000"
+    env_file:
+      - .env
+    environment:
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --workers 4
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: transparencia-n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=admin123
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      - bot-api
+
+volumes:
+  n8n_data:

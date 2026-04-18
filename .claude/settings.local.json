@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(///wsl.localhost/Ubuntu-24.04/home/**)",
+      "Read(//c/Users/Saud/**)",
+      "Bash(docker compose *)",
+      "Read(///wsl.localhost/Ubuntu-24.04/mnt/**)",
+      "Bash(wslpath -u \"\\\\\\\\wsl.localhost\\\\Ubuntu-24.04\\\\home\\\\saud\\\\transparencia-bot\")",
+      "Bash(wsl *)"
+    ]
+  }
+}
