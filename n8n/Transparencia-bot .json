@@ -1,0 +1,286 @@
+{
+  "name": "Transparencia-bot",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ef4b2c4f-ad81-462a-8f11-c29d53f5c7be",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -256,
+        -144
+      ],
+      "id": "0c294b11-6516-4e6d-a596-4d06724fee29",
+      "name": "Webhook",
+      "webhookId": "ef4b2c4f-ad81-462a-8f11-c29d53f5c7be"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://bot-api:8000/api/v1/consultar",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"identificador\": \"{{ $json.body.identificador }}\",\n  \"filtro_social\": false\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "529cb4e7-dd7b-46cb-885e-4959f7ab47ba",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "createFromText",
+        "content": "={{ JSON.stringify($node[\"HTTP Request\"].json) }}\n\n",
+        "name": "=={{ $node[\"HTTP Request\"].json.identificador }}_{{ $now }}.json",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        416,
+        0
+      ],
+      "id": "6e0f4ad0-e00e-4357-ae9e-89ef41c0cf52",
+      "name": "Create file from text",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "9oldUmgj8N3EuThE",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1_uDJFtiRKfJK9S9vcmN50PQ9MwAc39IJWO9v6vb_uZk",
+          "mode": "list",
+          "cachedResultName": "transparencia-bot",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_uDJFtiRKfJK9S9vcmN50PQ9MwAc39IJWO9v6vb_uZk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_uDJFtiRKfJK9S9vcmN50PQ9MwAc39IJWO9v6vb_uZk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "identificador": "={{ $node[\"HTTP Request\"].json.identificador }}",
+            "nome": "={{ $node[\"HTTP Request\"].json.panorama.nome }}",
+            "cpf": "={{ $node[\"HTTP Request\"].json.panorama.cpf }}",
+            "localidade": "={{ $node[\"HTTP Request\"].json.panorama.localidade }}",
+            "status": "={{ $node[\"HTTP Request\"].json.status }}",
+            "data": "={{ $now }}",
+            "link_drive": "=={{\"https://drive.google.com/file/d/\" + $node[\"Create file from text\"].json.id + \"/view\"}}"
+          },
+          "matchingColumns": [
+            "identificador"
+          ],
+          "schema": [
+            {
+              "id": "identificador",
+              "displayName": "identificador",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "nome",
+              "displayName": "nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cpf",
+              "displayName": "cpf",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "localidade",
+              "displayName": "localidade",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data",
+              "displayName": "data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link_drive",
+              "displayName": "link_drive",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        624,
+        0
+      ],
+      "id": "dbfabd96-f369-411a-9575-a957011fae1a",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0NtOz1WrIQLkJBn9",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"body\": {\n    \"identificador\": \"Gustavo Rocha\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -32,
+        0
+      ],
+      "id": "c22bccf5-a714-4df0-9a51-95ca1c1f96ac",
+      "name": "Dados de teste"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        0
+      ],
+      "id": "441fd949-8d5b-459e-9330-bb7c49f7e58a",
+      "name": "When clicking ‘Execute workflow’"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Create file from text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create file from text": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dados de teste": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Dados de teste",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "126d29a9-925c-43ac-800b-3b45a17a85ca",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "094009fd0cfdb7d92eb1082559d6eed5e8f3bd0c72be4610a28e0f05afcd22f8"
+  },
+  "id": "SOOZf3A669sjv77A",
+  "tags": []
+}
